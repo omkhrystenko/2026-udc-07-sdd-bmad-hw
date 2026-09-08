@@ -77,8 +77,8 @@ read the clock inside with no way to override. Rejected: it makes expiry
 untestable without faking global time, and it hides an input that genuinely
 affects the result. The parameter stays **optional** at the API boundary —
 requiring it would push a clock read into every caller for no gain. What the
-contract guarantees is narrower and enough: two calls with the same effective
-instant produce the same breakdown.
+contract guarantees is narrower and enough: equal order + equal catalog + same
+effective instant produce equal breakdowns.
 
 **D7. Rejections as a flat list of `{ code, reason }`.** Alternative: a
 `Result`-style union or a thrown `CouponError`. Both force the caller into

@@ -120,8 +120,10 @@ is not in the catalog, `expired`, `below-min-subtotal`, `scope-occupied`,
 evaluation instant is at or after its expiry instant. The evaluation instant
 SHALL be accepted as an input to pricing so that a caller can price an order
 against a chosen instant; when the caller supplies none, the current time
-applies. Two calls made with the same effective instant SHALL produce the same
-breakdown.
+applies. Two calls made with an equal order, an equal catalog and the same
+effective instant SHALL produce equal breakdowns — the evaluation instant is the
+only input that pricing may read from outside its arguments, and only when the
+caller leaves it out.
 
 A typed code SHALL be matched against the catalog exactly, including letter
 case. If the catalog holds more than one entry under the same code, the first
