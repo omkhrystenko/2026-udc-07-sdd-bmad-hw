@@ -9,7 +9,8 @@
 ## Встановлення й ініціалізація
 
 ```bash
-npm install -g @fission-ai/openspec@latest   # 1.12.0
+# README курсу радить @latest; фіксую точну версію, щоб цей звіт відтворювався
+npm install -g @fission-ai/openspec@1.12.0
 openspec init --tools claude --no-animation
 ```
 
@@ -37,7 +38,7 @@ openspec validate add-order-discount-engine --strict
 | Артефакт | Що в ньому |
 |---|---|
 | `proposal.md` | навіщо зміна, що саме змінюється, які **capability** зачіпає, вплив на код і на споживачів |
-| `specs/order-discounts/spec.md` | delta-спека: 8 вимог у формі SHALL/MUST, 14 сценаріїв `#### Scenario:` у форматі WHEN/THEN, з ID `AC-1 … AC-14` у назвах |
+| `specs/order-discounts/spec.md` | delta-спека: 9 вимог у формі SHALL/MUST, 16 сценаріїв `#### Scenario:` у форматі WHEN/THEN, з ID `AC-1 … AC-15` у назвах (AC-7 має два сценарії — поріг досягнуто й не досягнуто) |
 | `design.md` | 7 технічних рішень (D1–D7) з розглянутими альтернативами, розділ Risks / Trade-offs, план міграції |
 | `tasks.md` | 15 задач у 5 групах, кожна з умовою перевірки |
 

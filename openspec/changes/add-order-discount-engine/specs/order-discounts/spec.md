@@ -6,8 +6,9 @@ which coupons are honoured when several are typed, how fractions of a kopeck are
 resolved, and the floor below which the total can never fall.
 
 Scenario numbering matches the acceptance criteria in
-`docs/spec/pricing-discounts.md` (AC-1 … AC-14) so that spec, tool artifacts,
-code and tests all share one set of identifiers.
+`docs/spec/pricing-discounts.md` (AC-1 … AC-15) so that spec, tool artifacts,
+code and tests all share one set of identifiers. AC-7 carries two scenarios
+(threshold met and not met), so there are 16 scenarios for 15 identifiers.
 
 ## ADDED Requirements
 
@@ -116,8 +117,15 @@ dropped silently: the order SHALL still be priced, and the coupon SHALL appear
 among the rejected coupons with a stable reason code — `unknown` for a code that
 is not in the catalog, `expired`, `below-min-subtotal`, `scope-occupied`,
 `duplicate`, or `not-applicable`. A coupon SHALL be treated as expired when the
-evaluation instant is at or after its expiry instant, and that instant SHALL be
-an explicit input to pricing rather than read from the ambient clock.
+evaluation instant is at or after its expiry instant. The evaluation instant
+SHALL be accepted as an input to pricing so that a caller can price an order
+against a chosen instant; when the caller supplies none, the current time
+applies. Two calls made with the same effective instant SHALL produce the same
+breakdown.
+
+A typed code SHALL be matched against the catalog exactly, including letter
+case. If the catalog holds more than one entry under the same code, the first
+such entry SHALL win.
 
 #### Scenario: AC-2 expired coupon
 

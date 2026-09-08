@@ -61,7 +61,10 @@ to define.
 where scope is the category or the sentinel `"order"`. Alternatives: apply all
 coupons (stackable to zero margin), or pick the best subset (combinatorial, and
 non-deterministic on ties). Occupancy is O(n), explainable to a customer, and
-stable under re-ordering of the catalog.
+stable under re-ordering of the catalog — with one exception, which the spec now
+states outright: if the catalog holds two entries under the same code, the first
+one wins, so re-ordering a catalog that contains such a duplicate can change the
+result. That is a defect in the catalog, not a case the engine arbitrates.
 
 **D5. `not-applicable` does not occupy a scope.** Checked before occupancy, so a
 coupon that would grant nothing cannot block a later one on the same scope.
@@ -69,9 +72,13 @@ Ordering the two checks the other way makes the outcome depend on typing order
 in a way no one intended — the kind of behaviour that only shows up in support
 tickets.
 
-**D6. `now` as an explicit parameter defaulting to `new Date()`.** Alternative:
-read the clock inside. Rejected: it makes expiry untestable without faking
-global time, and it hides an input that genuinely affects the result.
+**D6. `now` as an optional parameter defaulting to `new Date()`.** Alternative:
+read the clock inside with no way to override. Rejected: it makes expiry
+untestable without faking global time, and it hides an input that genuinely
+affects the result. The parameter stays **optional** at the API boundary —
+requiring it would push a clock read into every caller for no gain. What the
+contract guarantees is narrower and enough: two calls with the same effective
+instant produce the same breakdown.
 
 **D7. Rejections as a flat list of `{ code, reason }`.** Alternative: a
 `Result`-style union or a thrown `CouponError`. Both force the caller into

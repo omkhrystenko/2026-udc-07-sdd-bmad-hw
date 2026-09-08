@@ -60,9 +60,11 @@ describe("priceOrder", () => {
       items: [item({ category: "fresh" })],
       coupons: ["FRESH10", "FRESH20"],
     });
+    // Catalog order is deliberately the reverse of the typing order: the test
+    // must prove that the customer's order wins, not the catalog's (D-15).
     const catalog = [
-      coupon({ code: "FRESH10", value: 10, category: "fresh" }),
       coupon({ code: "FRESH20", value: 20, category: "fresh" }),
+      coupon({ code: "FRESH10", value: 10, category: "fresh" }),
     ];
 
     const result = priceOrder(o, catalog, NOW);

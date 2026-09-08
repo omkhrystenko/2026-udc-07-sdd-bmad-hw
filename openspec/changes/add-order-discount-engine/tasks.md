@@ -45,8 +45,9 @@
 ## 5. Tests, exports and traceability
 
 - [ ] 5.1 Write `app/src/discounts.test.ts` with one test per criterion, each
-  named `AC-N: ...`, covering AC-1 … AC-14 including the AC-4, AC-8 and AC-9
-  edge cases; verify with `cd app && npm test` (8 seeded tests stay green)
+  named `AC-N: ...`, covering AC-1 … AC-15 including the AC-4, AC-8 and AC-9
+  edge cases and the AC-15 repeated-expired-code case; verify with
+  `cd app && npm test` (8 seeded tests stay green)
 - [ ] 5.2 Re-export the discount surface from `app/src/index.ts`; verify with
   `cd app && npm run typecheck`
 - [ ] 5.3 Fill in `docs/traceability.md` with an AC → code → test row for every
