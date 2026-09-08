@@ -40,3 +40,7 @@ nul
 # deliberately scope permissions there.
 .claude/*
 !.claude/settings.json
+
+# Task E: власний агент-рецензент специфікації — деліверабл домашки,
+# тому знімаємо його з-під загального ігнорування .claude/*.
+!.claude/agents/
